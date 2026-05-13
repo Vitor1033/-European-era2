@@ -10,6 +10,8 @@ import { TestimonialCard } from "@/components/testimonials/TestimonialCard";
 import { testimonials } from "@/content/testimonials";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { getLatestPosts } from "@/content/blog";
+import { Accordion } from "@/components/ui/Accordion";
+import { generalFaq } from "@/content/faq";
 
 export const metadata = {
   title: "Home",
@@ -94,6 +96,23 @@ export default function HomePage() {
       <Section className="py-10">
         <Container>
           <LogoCloud />
+        </Container>
+      </Section>
+
+      <Section className="py-8">
+        <Container>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { k: "EU network", v: "Universities, companies & institutions" },
+              { k: "Structured process", v: "Apply → matching → preparation → start" },
+              { k: "Student-first", v: "Clarity, support, and quality outcomes" }
+            ].map((s) => (
+              <div key={s.k} className="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+                <p className="text-sm font-semibold text-slate-900">{s.k}</p>
+                <p className="mt-2 text-sm text-slate-600">{s.v}</p>
+              </div>
+            ))}
+          </div>
         </Container>
       </Section>
 
@@ -236,6 +255,28 @@ export default function HomePage() {
             {latestPosts.map((p) => (
               <BlogCard key={p.slug} post={p} />
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="bg-slate-50">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
+              <p className="mt-2 text-slate-600">
+                Quick answers to common questions. For more details, visit the full FAQ.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button href="/faq">View all FAQs</Button>
+                <Button variant="secondary" href="/contact">
+                  Contact us
+                </Button>
+              </div>
+            </div>
+            <div className="max-w-xl">
+              <Accordion items={generalFaq} />
+            </div>
           </div>
         </Container>
       </Section>

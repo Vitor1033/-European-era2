@@ -18,31 +18,36 @@ const sizes: Record<Size, string> = {
   lg: "h-11 px-5 text-base"
 };
 
-export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  href,
-  children,
-  ...rest
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type Common = {
   variant?: Variant;
   size?: Size;
   className?: string;
-  href?: string;
-}) {
+  children: React.ReactNode;
+};
+
+type ButtonAsButton = Common & React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+type ButtonAsLink = Common &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
+    href: string;
+    prefetch?: boolean;
+  };
+
+export function Button(props: ButtonAsButton | ButtonAsLink) {
+  const { variant = "primary", size = "md", className, children } = props;
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed";
   const cls = cn(base, variants[variant], sizes[size], className);
 
-  if (href) {
+  if ("href" in props && typeof props.href === "string") {
+    const { href, prefetch, ...rest } = props;
     return (
-      <Link href={href} className={cls}>
+      <Link href={href} className={cls} prefetch={prefetch} {...rest}>
         {children}
       </Link>
     );
   }
 
+  const { ...rest } = props;
   return (
     <button className={cls} {...rest}>
       {children}

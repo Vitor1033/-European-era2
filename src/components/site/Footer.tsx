@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { Input, Label } from "@/components/ui/Field";
 
 const footerLinks = {
   Company: [
@@ -39,6 +41,43 @@ export function Footer() {
             <p className="mt-4 max-w-md text-sm text-slate-600">
               Erasmus programs, internship placements, and mobility support — designed for clarity, trust, and strong outcomes.
             </p>
+            <div className="mt-6 grid gap-2 text-sm text-slate-600">
+              <p>
+                <span className="font-semibold text-slate-900">Email:</span>{" "}
+                <a className="hover:text-slate-900" href="mailto:hello@european-era.eu">
+                  hello@european-era.eu
+                </a>
+              </p>
+              <p>
+                <span className="font-semibold text-slate-900">Support:</span>{" "}
+                <a className="hover:text-slate-900" href="mailto:support@european-era.eu">
+                  support@european-era.eu
+                </a>
+              </p>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-2 text-sm">
+              <a
+                className="rounded-full bg-slate-50 px-3 py-1 text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-100"
+                href="#"
+                aria-label="European Era on LinkedIn"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="rounded-full bg-slate-50 px-3 py-1 text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-100"
+                href="#"
+                aria-label="European Era on Instagram"
+              >
+                Instagram
+              </a>
+              <a
+                className="rounded-full bg-slate-50 px-3 py-1 text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-100"
+                href="#"
+                aria-label="European Era on YouTube"
+              >
+                YouTube
+              </a>
+            </div>
             <p className="mt-6 text-xs text-slate-500">© {new Date().getFullYear()} European Era. All rights reserved.</p>
           </div>
 
@@ -56,6 +95,25 @@ export function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 grid gap-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="text-sm font-semibold text-slate-900">Newsletter</p>
+            <p className="mt-1 text-sm text-slate-600">Get practical Erasmus and internship tips — no spam.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-[1fr_auto]" aria-label="Newsletter signup">
+            <div>
+              <Label htmlFor="newsletterEmail">Email</Label>
+              <Input id="newsletterEmail" name="newsletterEmail" type="email" placeholder="you@email.com" required />
+            </div>
+            <div className="sm:self-end">
+              <Button type="button" className="w-full justify-center sm:w-auto">
+                Subscribe
+              </Button>
+            </div>
+            <p className="text-xs text-slate-500 sm:col-span-2">Newsletter signup will be connected to your email provider/CRM.</p>
+          </div>
         </div>
       </Container>
     </footer>
