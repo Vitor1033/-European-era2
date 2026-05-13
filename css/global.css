@@ -1,27 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500..800;1,500..700&family=Open+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
-  --color-bg: #f4f6f9;
+  --color-bg: #f3f5f9;
   --color-bg-elevated: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #0c1222;
-  --color-muted: #5c6578;
-  --color-border: rgba(15, 23, 42, 0.08);
-  --color-border-strong: rgba(15, 23, 42, 0.12);
-  --color-brand: #1d4ed8;
-  --color-brand-bright: #3b82f6;
-  --color-brand-hover: #1e40af;
-  --color-brand-soft: #e8efff;
-  --color-accent: #0ea5e9;
-  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --color-text: #0d1b2a;
+  --color-muted: #4a5568;
+  --color-border: rgba(13, 27, 42, 0.08);
+  --color-border-strong: rgba(13, 27, 42, 0.14);
+  --color-brand: #0a4d8c;
+  --color-brand-bright: #1565c0;
+  --color-brand-hover: #073a6b;
+  --color-brand-soft: #e3eef8;
+  --color-accent: #00796b;
+  --color-accent-soft: #e0f2f1;
+  --color-warm: #c2410c;
+  --font-sans: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 12px 40px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.1);
-  --space-section: clamp(3.25rem, 7vw, 5.5rem);
+  --shadow-sm: 0 1px 2px rgba(13, 27, 42, 0.06);
+  --shadow-md: 0 14px 44px rgba(13, 27, 42, 0.08);
+  --shadow-lg: 0 28px 64px rgba(13, 27, 42, 0.1);
+  --space-section: clamp(3.25rem, 7vw, 5.75rem);
   --max-width: 72rem;
 }
 
@@ -43,8 +45,9 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 120% 80% at 100% -20%, rgba(59, 130, 246, 0.12), transparent 50%),
-    radial-gradient(ellipse 80% 50% at 0% 100%, rgba(14, 165, 233, 0.06), transparent 45%);
+    radial-gradient(ellipse 100% 80% at 100% -15%, rgba(21, 101, 192, 0.11), transparent 52%),
+    radial-gradient(ellipse 70% 50% at 0% 105%, rgba(0, 121, 107, 0.07), transparent 48%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255, 255, 255, 0.5), transparent 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -56,7 +59,7 @@ img {
 }
 
 a {
-  color: var(--color-brand);
+  color: var(--color-brand-bright);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -102,43 +105,64 @@ a:hover {
 }
 
 .section--surface {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.72) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.78) 100%);
   border-block: 1px solid var(--color-border);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   margin-top: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
 }
 
 h1 {
-  font-size: clamp(2.25rem, 5vw, 3.35rem);
-  font-weight: 700;
+  font-size: clamp(2.15rem, 4.8vw, 3.2rem);
+  font-weight: 800;
   color: var(--color-text);
 }
 
 h2 {
-  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.8rem);
   font-weight: 700;
   color: var(--color-text);
 }
 
 h3 {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
-.display-serif {
-  font-family: var(--font-display);
-  font-weight: 400;
+/* Accent line under Montserrat — similar to corporate mobility sites */
+.hero-kicker {
+  font-family: var(--font-heading);
+  font-weight: 600;
   font-style: italic;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  color: var(--color-brand);
+  font-size: clamp(1.2rem, 2.8vw, 1.65rem);
+  line-height: 1.35;
+  margin: 0.75rem 0 0;
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.display-serif {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
 p {
@@ -151,9 +175,9 @@ p + p {
 }
 
 .lead {
-  font-size: clamp(1.08rem, 2.2vw, 1.22rem);
-  max-width: 40rem;
-  line-height: 1.6;
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  max-width: 42rem;
+  line-height: 1.62;
 }
 
 .muted {
@@ -162,4 +186,8 @@ p + p {
 
 .text-balance {
   text-wrap: balance;
+}
+
+.text-center {
+  text-align: center;
 }

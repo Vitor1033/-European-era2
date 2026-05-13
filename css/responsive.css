@@ -35,4 +35,9 @@ code {
     opacity: 1 !important;
     transform: none !important;
   }
+
+  html[data-motion="on"] [data-animate]:not(.is-visible) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
