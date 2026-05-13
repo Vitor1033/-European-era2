@@ -563,6 +563,48 @@
   .site-footer__grid {
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
   }
+
+  .site-footer__grid--ia {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid--ia {
+    grid-template-columns: 1.35fr minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.site-footer__brand {
+  max-width: 26rem;
+}
+
+.site-footer__intro {
+  margin-top: 1rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.site-footer__email {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.site-footer__email strong {
+  color: #fff;
+}
+
+.site-footer__ia-link {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.site-footer .logo {
+  color: #fff;
+}
+
+.site-footer .logo:hover {
+  color: #fff;
 }
 
 .site-footer h3 {

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opportunity — European Era</title>
+    <meta name="description" content="Opportunity details: role, location, duration, and how to apply with European Era." />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body style="display: flex; flex-direction: column; min-height: 100vh">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div id="site-navbar"></div>
+
+    <main id="main" style="flex: 1">
+      <header class="page-hero">
+        <div class="container page-intro" data-animate>
+          <p class="muted mb-sm"><a href="opportunities.html">← All opportunities</a></p>
+          <h1 id="opp-title">Opportunity</h1>
+          <p class="lead" id="opp-meta"></p>
+          <div class="hero__actions" style="margin-top: 1.25rem">
+            <a class="btn btn--primary btn--lg" href="apply.html#student">Apply</a>
+            <a class="btn btn--secondary btn--lg" href="contact.html#contact-form">Ask a question</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container" style="max-width: 42rem">
+          <div class="card" data-animate>
+            <h2 class="mb-sm">Overview</h2>
+            <p id="opp-body" class="muted">
+              This is a static template for the “Opportunity detail” page from the sitemap. Pass <code>?id=</code> in the URL
+              to show a sample listing.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script>
+      const samples = {
+        "growth-intern": {
+          title: "Growth intern",
+          meta: "Lisbon · 3–6 months · Marketing · Hybrid-friendly",
+          body: "Campaigns, analytics, and content distribution with mentorship. Ideal for students building a portfolio in growth and GTM."
+        },
+        "frontend-react": {
+          title: "Frontend intern (React)",
+          meta: "Barcelona · 3–6 months · IT & Tech · Onsite",
+          body: "Ship UI with reviews, pairing, and a modern toolchain. Strong collaboration with design and product."
+        },
+        "operations": {
+          title: "Operations intern",
+          meta: "Berlin · 4–6 months · Business · Hybrid",
+          body: "Reporting, partner coordination, and process improvement in a fast-moving team."
+        },
+        "innovation-analyst": {
+          title: "Innovation analyst",
+          meta: "Prague · 4–6 months · AI & Innovation · Onsite",
+          body: "Applied projects with stakeholders across the EU network."
+        },
+        "product-design": {
+          title: "Product design intern",
+          meta: "Amsterdam · 3–5 months · Design · Onsite",
+          body: "Flows, UI polish, and research practice with a design system."
+        },
+        "data-remote": {
+          title: "Data intern (EU hours)",
+          meta: "Remote · 3–6 months · Remote",
+          body: "Dashboards and reporting with async-friendly rituals."
+        }
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const id = new URLSearchParams(location.search).get("id") || "growth-intern";
+        const data = samples[id] || {
+          title: "Opportunity",
+          meta: "Europe · European Era network",
+          body: "Use a valid ?id= from the opportunities list, or return to all opportunities."
+        };
+        const t = document.getElementById("opp-title");
+        const m = document.getElementById("opp-meta");
+        const b = document.getElementById("opp-body");
+        if (t) t.textContent = data.title;
+        if (m) m.textContent = data.meta;
+        if (b) b.textContent = data.body;
+        document.title = data.title + " — European Era";
+      });
+    </script>
+  </body>
+</html>

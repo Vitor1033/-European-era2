@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog post — European Era</title>
+    <meta name="description" content="European Era blog: Erasmus tips, career advice, and student guides." />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body style="display: flex; flex-direction: column; min-height: 100vh">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div id="site-navbar"></div>
+
+    <main id="main" style="flex: 1">
+      <article>
+        <header class="page-hero">
+          <div class="container page-intro" style="max-width: 40rem" data-animate>
+            <p class="muted mb-sm"><a href="blog.html">← Blog</a> · <span id="post-tag"></span></p>
+            <h1 id="post-title">Blog post</h1>
+            <p class="lead mb-0" id="post-dek"></p>
+          </div>
+        </header>
+        <section class="section section--tight">
+          <div class="container" style="max-width: 40rem">
+            <div class="card" data-animate>
+              <p id="post-body" class="muted"></p>
+              <p class="muted" style="margin-top: 1.5rem; font-size: 0.9rem">
+                Template for the “Blog post” dynamic page in the sitemap. Use <code>?slug=</code> to swap sample content.
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <div id="site-footer"></div>
+    <script>
+      const posts = {
+        checklist: {
+          tag: "Erasmus tips",
+          title: "Documents checklist",
+          dek: "What you need before departure — without last-minute panic.",
+          body: "Learning agreement copies, insurance proof, accommodation confirmations, and identity documents should live in one folder (digital + print). We recommend a single timeline owner and weekly checks from T-8 weeks."
+        },
+        interviews: {
+          tag: "Career advice",
+          title: "EU internship interviews",
+          dek: "Structure your story with outcomes and a learning mindset.",
+          body: "Lead with a project, quantify impact where ethical, and connect your motivation to the host city and team rituals."
+        },
+        "first-week": {
+          tag: "Student experience",
+          title: "First week abroad",
+          dek: "A calm playbook for routines and small wins.",
+          body: "Banking, transport pass, university card, and a local buddy check-in — batch admin into two blocks so the rest of the week stays exploratory."
+        },
+        news: {
+          tag: "News & updates",
+          title: "Programme updates",
+          dek: "What changes in 2026 intakes (placeholder).",
+          body: "Replace with real programme news. This route demonstrates the blog post template from your IA."
+        }
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const slug = new URLSearchParams(location.search).get("slug") || "checklist";
+        const p = posts[slug] || posts.checklist;
+        document.getElementById("post-tag").textContent = p.tag;
+        document.getElementById("post-title").textContent = p.title;
+        document.getElementById("post-dek").textContent = p.dek;
+        document.getElementById("post-body").textContent = p.body;
+        document.title = p.title + " — European Era";
+      });
+    </script>
+  </body>
+</html>

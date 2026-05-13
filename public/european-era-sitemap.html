@@ -1,0 +1,469 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans, 'Anthropic Sans', sans-serif); }
+
+  .sitemap-root {
+    width: 100%;
+    padding: 28px 20px 36px;
+    background: transparent;
+  }
+
+  /* ── Header ─────────────────────────────────────── */
+  .sm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .sm-brand { display: flex; align-items: center; gap: 10px; }
+  .sm-logo {
+    width: 32px; height: 32px;
+    background: #1757C2;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sm-logo span { color: #fff; font-size: 14px; font-weight: 500; letter-spacing: -0.5px; }
+  .sm-brand-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+  .sm-brand-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 1px; }
+  .sm-meta { font-size: 11px; color: var(--color-text-tertiary); text-align: right; }
+  .sm-meta strong { color: var(--color-text-secondary); font-weight: 500; }
+
+  /* ── Legend ─────────────────────────────────────── */
+  .sm-legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .sm-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--color-text-secondary); }
+  .leg-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .leg-home { background: #1757C2; }
+  .leg-primary { background: #E8F0FD; border: 1px solid #9DBBE6; }
+  .leg-secondary { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); }
+  .leg-special { background: #FFF4E0; border: 1px solid #F0C270; }
+
+  /* ── Home node ──────────────────────────────────── */
+  .sm-home-row {
+    display: flex; justify-content: center;
+    margin-bottom: 0;
+  }
+  .sm-home {
+    background: #1757C2;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 28px;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+  .sm-home i { font-size: 15px; }
+
+  /* ── Connector from Home to primary row ─────────── */
+  .sm-vline-home {
+    width: 1px; height: 20px;
+    background: var(--color-border-secondary);
+    margin: 0 auto;
+  }
+  .sm-hline-top {
+    height: 1px;
+    background: var(--color-border-secondary);
+    margin: 0 8px;
+    position: relative;
+  }
+
+  /* ── Primary nav grid ───────────────────────────── */
+  .sm-primary-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 0;
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  .sm-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  /* vertical line from top hline to primary card */
+  .sm-col-vline-top {
+    width: 1px; height: 16px;
+    background: var(--color-border-secondary);
+  }
+
+  /* Primary nav card */
+  .sm-primary {
+    background: #E8F0FD;
+    border: 1px solid #9DBBE6;
+    border-radius: 8px;
+    padding: 8px 6px;
+    font-size: 11px; font-weight: 500;
+    color: #1045A0;
+    text-align: center;
+    width: 100%;
+    min-width: 0;
+    cursor: default;
+    transition: transform 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sm-primary:hover { transform: translateY(-1px); }
+  .sm-primary i { display: block; font-size: 14px; margin-bottom: 3px; color: #1757C2; }
+
+  /* vertical line from primary card to children */
+  .sm-col-vline-bottom {
+    width: 1px; height: 14px;
+    background: var(--color-border-secondary);
+  }
+
+  /* ── Children group ──────────────────────────────── */
+  .sm-children {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .sm-child {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 6px;
+    padding: 5px 6px;
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+    transition: background 0.15s, color 0.15s;
+  }
+  .sm-child:hover {
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+  }
+
+  /* Special child (details/cta pages) */
+  .sm-child.special {
+    background: #FFF4E0;
+    border-color: #F0C270;
+    color: #8B5E00;
+  }
+
+  /* ── Utility row (bottom) ───────────────────────── */
+  .sm-utility-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 0.5px dashed var(--color-border-tertiary);
+  }
+  .sm-utility-label {
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+  .sm-utility-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .sm-utility-col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .sm-utility-header {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 7px;
+    padding: 7px 8px;
+    font-size: 11px; font-weight: 500;
+    color: var(--color-text-secondary);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .sm-utility-header i { font-size: 13px; color: var(--color-text-tertiary); }
+  .sm-utility-child {
+    background: transparent;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+    margin-left: 10px;
+    position: relative;
+  }
+  .sm-utility-child::before {
+    content: '';
+    position: absolute;
+    left: -10px; top: 50%;
+    width: 9px; height: 0.5px;
+    background: var(--color-border-tertiary);
+  }
+
+  /* ── Page count badge ─────────────────────────── */
+  .sm-count {
+    display: inline-block;
+    background: #E8F0FD;
+    color: #1045A0;
+    font-size: 9px;
+    font-weight: 500;
+    padding: 1px 5px;
+    border-radius: 10px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* horizontal connector */
+  .hconn {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--color-border-secondary);
+    pointer-events: none;
+  }
+</style>
+
+<div class="sitemap-root">
+
+  <!-- Header -->
+  <div class="sm-header">
+    <div class="sm-brand">
+      <div class="sm-logo"><span>EE</span></div>
+      <div>
+        <div class="sm-brand-name">European Era</div>
+        <div class="sm-brand-sub">Information Architecture · Sitemap v1.0</div>
+      </div>
+    </div>
+    <div class="sm-meta">
+      <strong>52 pages</strong> across 13 sections<br>
+      UX Planning Document · 2025
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="sm-legend">
+    <div class="sm-legend-item"><div class="leg-dot leg-home"></div>Home</div>
+    <div class="sm-legend-item"><div class="leg-dot leg-primary"></div>Primary navigation</div>
+    <div class="sm-legend-item"><div class="leg-dot leg-secondary"></div>Child pages</div>
+    <div class="sm-legend-item"><div class="leg-dot leg-special"></div>Dynamic / detail pages</div>
+  </div>
+
+  <!-- Home -->
+  <div class="sm-home-row">
+    <div class="sm-home">
+      <i class="ti ti-home" aria-hidden="true"></i>
+      Home
+    </div>
+  </div>
+
+  <!-- V-line from home -->
+  <div class="sm-vline-home"></div>
+
+  <!-- H-line spanning full width -->
+  <div style="position: relative; height: 1px; background: var(--color-border-secondary); margin: 0 3.85%;"></div>
+
+  <!-- Primary grid -->
+  <div class="sm-primary-grid" style="margin-top: 0; gap: 6px; padding: 0 0;">
+
+    <!-- ABOUT -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-info-circle" aria-hidden="true"></i>About</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Mission</div>
+        <div class="sm-child">Vision</div>
+        <div class="sm-child">Team</div>
+        <div class="sm-child">Values</div>
+      </div>
+    </div>
+
+    <!-- OPPORTUNITIES -->
+    <div class="sm-col" style="grid-column: span 2;">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-briefcase" aria-hidden="true"></i>Opportunities</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">All Opportunities</div>
+        <div class="sm-child">Marketing</div>
+        <div class="sm-child">Business</div>
+        <div class="sm-child">IT & Tech</div>
+        <div class="sm-child">Design</div>
+        <div class="sm-child">AI & Innovation</div>
+        <div class="sm-child">Remote</div>
+        <div class="sm-child special">Opportunity Detail</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="sm-col" style="grid-column: span 2;">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-stars" aria-hidden="true"></i>Services</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Erasmus Programs</div>
+        <div class="sm-child">Internship Placement</div>
+        <div class="sm-child">Mobility Support</div>
+        <div class="sm-child">Accommodation</div>
+        <div class="sm-child">Student Support</div>
+        <div class="sm-child">Company Partners</div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-route" aria-hidden="true"></i>How It Works</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Apply</div>
+        <div class="sm-child">Matching</div>
+        <div class="sm-child">Preparation</div>
+        <div class="sm-child">Start Exp.</div>
+      </div>
+    </div>
+
+    <!-- PARTNERS -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-building" aria-hidden="true"></i>Partners</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Universities</div>
+        <div class="sm-child">Companies</div>
+        <div class="sm-child">Erasmus+</div>
+        <div class="sm-child special">Become Partner</div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-quote" aria-hidden="true"></i>Testimonials</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Student Stories</div>
+        <div class="sm-child">Success Stories</div>
+        <div class="sm-child">Partner Feedback</div>
+      </div>
+    </div>
+
+    <!-- BLOG -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-pencil" aria-hidden="true"></i>Blog</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Erasmus Tips</div>
+        <div class="sm-child">Career Advice</div>
+        <div class="sm-child">Intern Guides</div>
+        <div class="sm-child">Student Exp.</div>
+        <div class="sm-child">News & Updates</div>
+        <div class="sm-child special">Blog Post</div>
+      </div>
+    </div>
+
+    <!-- APPLY -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary" style="background:#1757C2; color:#fff; border-color:#1757C2;"><i class="ti ti-send" aria-hidden="true" style="color:#93B8F5;"></i>Apply</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child special">Student App.</div>
+        <div class="sm-child special">Company App.</div>
+        <div class="sm-child special">Partner App.</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-help-circle" aria-hidden="true"></i>FAQ</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">General FAQ</div>
+        <div class="sm-child">Student FAQ</div>
+        <div class="sm-child">Company FAQ</div>
+        <div class="sm-child">Erasmus FAQ</div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="sm-col">
+      <div class="sm-col-vline-top"></div>
+      <div class="sm-primary"><i class="ti ti-mail" aria-hidden="true"></i>Contact</div>
+      <div class="sm-col-vline-bottom"></div>
+      <div class="sm-children">
+        <div class="sm-child">Contact Form</div>
+        <div class="sm-child">Support</div>
+        <div class="sm-child">Partnership Req.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Utility / secondary sections -->
+  <div class="sm-utility-section">
+    <div class="sm-utility-label">Secondary &amp; utility pages</div>
+    <div class="sm-utility-grid">
+
+      <!-- Resources -->
+      <div class="sm-utility-col">
+        <div class="sm-utility-header"><i class="ti ti-folder" aria-hidden="true"></i>Resources</div>
+        <div class="sm-utility-child">Guides</div>
+        <div class="sm-utility-child">Downloads</div>
+        <div class="sm-utility-child">Checklists</div>
+        <div class="sm-utility-child">Documents</div>
+      </div>
+
+      <!-- Legal -->
+      <div class="sm-utility-col">
+        <div class="sm-utility-header"><i class="ti ti-shield" aria-hidden="true"></i>Legal</div>
+        <div class="sm-utility-child">Privacy Policy</div>
+        <div class="sm-utility-child">Terms & Conditions</div>
+        <div class="sm-utility-child">Cookie Policy</div>
+        <div class="sm-utility-child">GDPR</div>
+      </div>
+
+      <!-- System -->
+      <div class="sm-utility-col">
+        <div class="sm-utility-header"><i class="ti ti-settings" aria-hidden="true"></i>System</div>
+        <div class="sm-utility-child">404 Error Page</div>
+        <div class="sm-utility-child">Sitemap (XML)</div>
+      </div>
+
+      <!-- Page count summary -->
+      <div class="sm-utility-col">
+        <div style="background: #E8F0FD; border: 1px solid #9DBBE6; border-radius: 8px; padding: 10px 12px;">
+          <div style="font-size: 10px; color: #5580B8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px;">Page summary</div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #1045A0;">
+              <span>Primary sections</span><strong>13</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #1045A0;">
+              <span>Child pages</span><strong>37</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #1045A0;">
+              <span>Dynamic templates</span><strong>4</strong>
+            </div>
+            <div style="border-top: 0.5px solid #9DBBE6; margin-top: 4px; padding-top: 4px; display: flex; justify-content: space-between; font-size: 11px; font-weight: 500; color: #1757C2;">
+              <span>Total pages</span><strong>52+</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
