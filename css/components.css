@@ -720,14 +720,19 @@
   margin-bottom: 2rem;
 }
 
-/* Animation hooks */
+/* Animation hooks — default visible so content is never stuck hidden if JS fails or loads late */
 [data-animate] {
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-[data-animate].is-visible {
+html[data-motion="on"] [data-animate]:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+html[data-motion="on"] [data-animate].is-visible {
   opacity: 1;
   transform: none;
 }

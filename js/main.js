@@ -1,13 +1,18 @@
-import "../css/global.css";
-import "../css/components.css";
-import "../css/pages.css";
-import "../css/responsive.css";
-
 import { initRouter } from "./router.js";
 import { initAnimations } from "./animations.js";
 
-/** Resolved from bundled `main.js` location (works in `vite dev`, `vite preview`, and `dist/`). */
-const partial = (file) => new URL(`../components/${file}`, import.meta.url).href;
+/**
+ * Navbar/footer HTML: Vite serves `public/` at site root (`/components/...`).
+ * Plain static servers and file:// resolve from `js/main.js` → `../public/components/...`.
+ */
+const partial = (file) => {
+  const base = import.meta.env?.BASE_URL;
+  if (base !== undefined) {
+    const root = base.endsWith("/") ? base : `${base}/`;
+    return `${root}components/${file}`;
+  }
+  return new URL(`../public/components/${file}`, import.meta.url).href;
+};
 
 const PARTIALS = [
   { id: "site-navbar", url: partial("navbar.html") },
