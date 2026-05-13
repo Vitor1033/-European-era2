@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opportunities — European Era</title>
+    <meta name="description" content="Explore internships and mobility-friendly placements across Europe with European Era." />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body style="display: flex; flex-direction: column; min-height: 100vh">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div id="site-navbar"></div>
+
+    <main id="main" style="flex: 1">
+      <header class="page-hero">
+        <div class="container page-intro" data-animate>
+          <h1>Opportunities</h1>
+          <p class="lead">
+            A curated view of internships and Erasmus-friendly placements — designed for fast scanning, clear requirements,
+            and confident applications.
+          </p>
+          <div class="hero__actions" style="margin-top: 1.25rem">
+            <a class="btn btn--primary" href="apply.html">Apply now</a>
+            <a class="btn btn--secondary" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="section section--surface">
+        <div class="container">
+          <label class="sr-only" for="filter-cat">Filter by category</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem" data-animate>
+            <button type="button" class="btn btn--secondary" data-filter="all">All</button>
+            <button type="button" class="btn btn--secondary" data-filter="marketing">Marketing</button>
+            <button type="button" class="btn btn--secondary" data-filter="tech">IT & Tech</button>
+            <button type="button" class="btn btn--secondary" data-filter="business">Business</button>
+            <button type="button" class="btn btn--secondary" data-filter="remote">Remote</button>
+            <button type="button" class="btn btn--secondary" data-filter="design">Design</button>
+          </div>
+          <div class="card-grid card-grid--3" id="opportunity-list">
+            <article class="card" data-cat="marketing" data-animate>
+              <span class="card__tag">Marketing</span>
+              <h3>Growth intern</h3>
+              <p><strong>Lisbon</strong> · 3–6 months · Hybrid-friendly</p>
+              <p>Campaigns, analytics, and content distribution with mentorship.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+            <article class="card" data-cat="tech" data-animate>
+              <span class="card__tag">IT & Tech</span>
+              <h3>Frontend intern (React)</h3>
+              <p><strong>Barcelona</strong> · 3–6 months · Onsite</p>
+              <p>Ship UI with reviews, pairing, and a modern toolchain.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+            <article class="card" data-cat="business" data-animate>
+              <span class="card__tag">Business</span>
+              <h3>Operations intern</h3>
+              <p><strong>Berlin</strong> · 4–6 months · Hybrid</p>
+              <p>Reporting, partner coordination, and process improvement.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+            <article class="card" data-cat="tech" data-animate>
+              <span class="card__tag">AI & Innovation</span>
+              <h3>Innovation analyst</h3>
+              <p><strong>Prague</strong> · 4–6 months · Onsite</p>
+              <p>Applied projects with stakeholders across the EU network.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+            <article class="card" data-cat="design" data-animate>
+              <span class="card__tag">Design</span>
+              <h3>Product design intern</h3>
+              <p><strong>Amsterdam</strong> · 3–5 months · Onsite</p>
+              <p>Flows, UI polish, and research practice with a design system.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+            <article class="card" data-cat="remote" data-animate>
+              <span class="card__tag">Remote</span>
+              <h3>Data intern (EU hours)</h3>
+              <p><strong>Remote</strong> · 3–6 months</p>
+              <p>Dashboards and reporting with async-friendly rituals.</p>
+              <a class="card__link" href="apply.html">Apply →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-band" data-animate>
+            <div class="cta-band__row">
+              <div>
+                <h2 class="mb-sm">Don’t see the perfect fit?</h2>
+                <p class="lead mb-0">Apply anyway — we match across programs and partner intakes.</p>
+              </div>
+              <a class="btn btn--primary btn--lg" href="apply.html">Submit your profile</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll("[data-filter]");
+        const cards = document.querySelectorAll("#opportunity-list [data-cat]");
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const f = btn.getAttribute("data-filter");
+            buttons.forEach((b) => b.classList.remove("btn--primary"));
+            buttons.forEach((b) => b.classList.add("btn--secondary"));
+            btn.classList.remove("btn--secondary");
+            btn.classList.add("btn--primary");
+            cards.forEach((card) => {
+              const show = f === "all" || card.getAttribute("data-cat") === f;
+              card.style.display = show ? "" : "none";
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

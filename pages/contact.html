@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — European Era</title>
+    <meta name="description" content="Contact European Era for student applications, internships, Erasmus support, and partnerships." />
+    <script type="module" src="../js/main.js"></script>
+  </head>
+  <body style="display: flex; flex-direction: column; min-height: 100vh">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <div id="site-navbar"></div>
+
+    <main id="main" style="flex: 1">
+      <header class="page-hero">
+        <div class="container page-intro" data-animate>
+          <h1>Contact</h1>
+          <p class="lead">
+            Tell us what you need — student mobility, internship matching, or partnership collaboration. We reply with clear
+            next steps.
+          </p>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container split split--2">
+          <div data-animate>
+            <h2 class="mb-sm">Contact details</h2>
+            <p><strong>General:</strong> <a href="mailto:hello@european-era.eu">hello@european-era.eu</a></p>
+            <p><strong>Support:</strong> <a href="mailto:support@european-era.eu">support@european-era.eu</a></p>
+            <p class="muted" style="margin-top: 1.5rem; font-size: 0.95rem">
+              Typical response time: a few business days.
+            </p>
+            <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 2rem 0" />
+            <h2 class="mb-sm" id="privacy">Privacy (placeholder)</h2>
+            <p class="muted" style="font-size: 0.9rem">
+              Replace this block with your official privacy policy before production launch.
+            </p>
+            <h2 class="mb-sm" id="terms" style="margin-top: 1.5rem">Terms (placeholder)</h2>
+            <p class="muted" style="font-size: 0.9rem">Replace with your official terms &amp; conditions.</p>
+          </div>
+
+          <div data-animate>
+            <div class="card">
+              <h2 class="mb-sm">Send a message</h2>
+              <p class="muted mb-md" style="font-size: 0.95rem">This form runs client-side for demo purposes (no backend).</p>
+              <form class="form" data-contact-form>
+                <div>
+                  <label for="name">Full name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="topic">Topic</label>
+                  <select id="topic" name="topic" required>
+                    <option value="">Select…</option>
+                    <option value="student">Student application</option>
+                    <option value="company">Company partnership</option>
+                    <option value="university">University partnership</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+                </div>
+                <button class="btn btn--primary" type="submit">Submit</button>
+                <div class="form-status" role="status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+  </body>
+</html>

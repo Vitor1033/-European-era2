@@ -1,0 +1,87 @@
+/* Page-specific layout helpers */
+
+.page-intro {
+  max-width: 42rem;
+}
+
+.split {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .split--2 {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.logo-cloud {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .logo-cloud {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.logo-cloud__item {
+  height: 3.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #fff, #f1f5f9);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.logo-cloud__item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.testimonial {
+  position: relative;
+}
+
+.testimonial::before {
+  content: "“";
+  position: absolute;
+  top: -0.25rem;
+  left: 0.5rem;
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(59, 130, 246, 0.12);
+  font-family: var(--font-display);
+}
+
+.testimonial blockquote {
+  margin: 0;
+  padding-left: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial figcaption {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.testimonial .name {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.testimonial .role {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
